@@ -1,6 +1,6 @@
 {
   "createdAt": "2025-08-02T13:09:55.338Z",
-  "updatedAt": "2025-08-02T13:17:34.000Z",
+  "updatedAt": "2025-08-02T13:19:26.000Z",
   "id": "lXNvd66CTPrknSOd",
   "name": "Automated daily workflow backup to GitHub 2",
   "active": false,
@@ -80,7 +80,7 @@
           "cachedResultName": "n8n-backup",
           "cachedResultUrl": "https://github.com/Camusama/n8n-backup"
         },
-        "filePath": "=/homelab"
+        "filePath": "=/"
       },
       "id": "854f6e82-babb-474e-a138-2a6c398fd60e",
       "name": "List files from repo",
@@ -405,7 +405,7 @@
     "templateId": "4064"
   },
   "pinData": {},
-  "versionId": "dbc259bc-f361-4efe-8695-c8dd70b9143c",
+  "versionId": "1c5def7e-a789-438a-8f07-c3d96ba86ed0",
   "triggerCount": 0,
   "tags": []
 }
