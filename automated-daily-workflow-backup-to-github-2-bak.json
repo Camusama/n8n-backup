@@ -1,6 +1,6 @@
 {
   "createdAt": "2025-08-02T13:09:55.338Z",
-  "updatedAt": "2025-08-02T13:19:26.000Z",
+  "updatedAt": "2025-08-02T13:21:37.000Z",
   "id": "lXNvd66CTPrknSOd",
   "name": "Automated daily workflow backup to GitHub 2",
   "active": false,
@@ -116,7 +116,7 @@
           "cachedResultName": "n8n-backup",
           "cachedResultUrl": "https://github.com/Camusama/n8n-backup"
         },
-        "filePath": "={{ $('Retrieve workflows').item.json.name.replace(/\\s+/g, '-').toLowerCase() }}-{{ $('Retrieve workflows').item.json.tags[0].name }}.json",
+        "filePath": "={{ $('Retrieve workflows').item.json.name.replace(/\\s+/g, '-').toLowerCase() }}-{{ $('Retrieve workflows').item.json.tags[0]?.name || 'bak'}}.json",
         "fileContent": "={{ $('To base64').item.json.data }}",
         "commitMessage": "=backup-{{ $('Commit date & file name').item.json.commitDate }}"
       },
@@ -405,7 +405,7 @@
     "templateId": "4064"
   },
   "pinData": {},
-  "versionId": "1c5def7e-a789-438a-8f07-c3d96ba86ed0",
+  "versionId": "f2a12cbd-3682-4864-b037-679314cf9b8b",
   "triggerCount": 0,
   "tags": []
 }
