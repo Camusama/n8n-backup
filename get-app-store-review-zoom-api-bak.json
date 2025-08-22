@@ -1,0 +1,169 @@
+{
+  "createdAt": "2025-08-21T09:07:25.144Z",
+  "updatedAt": "2025-08-21T09:33:52.000Z",
+  "id": "cmdMtWmhnV2IEjol",
+  "name": "get-app-store-review-zoom-api",
+  "active": true,
+  "isArchived": false,
+  "nodes": [
+    {
+      "parameters": {
+        "path": "get-zoom-reviews",
+        "authentication": "basicAuth",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        80,
+        32
+      ],
+      "id": "b84699a0-c506-4b21-adbe-b196328fbfe4",
+      "name": "Webhook (GET)",
+      "webhookId": "2447c258-0695-4720-9167-aa306db4fb93",
+      "credentials": {
+        "httpBasicAuth": {
+          "id": "4VwcHmOyMFtXI6Eu",
+          "name": "zoom-review-basic"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={\n    \"reviews\":{{ JSON.stringify($json.reviews) }},\n  \"google_sheet_url\": \"https://docs.google.com/spreadsheets/d/1tiBAVoFrT_R5TtPJJ-DXlT00PC8NQL7xP3ctQmD1Rj8/edit?gid=838036886#gid=838036886\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [
+        880,
+        32
+      ],
+      "id": "b4f07434-9a2b-4a19-ab02-44bd63ad8bc9",
+      "name": "Respond to Webhook"
+    },
+    {
+      "parameters": {
+        "mode": "raw",
+        "jsonOutput": "{\n  \"google_sheet_url\": \"https://docs.google.com/spreadsheets/d/1tiBAVoFrT_R5TtPJJ-DXlT00PC8NQL7xP3ctQmD1Rj8/edit?gid=838036886#gid=838036886\"\n}\n",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        288,
+        32
+      ],
+      "id": "1debc1ad-0b8b-4ecc-b868-9fc88519fb82",
+      "name": "Edit Fields1"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "={{ $json.google_sheet_url }}",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "={{ $json.google_sheet_url }}",
+          "mode": "url"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.6,
+      "position": [
+        480,
+        32
+      ],
+      "id": "c7403479-2ae2-40b9-aac5-512ce3ff34c5",
+      "name": "Zoom Reviews1",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "VXAlxkWiOANdzJaF",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "aggregate": "aggregateAllItemData",
+        "destinationFieldName": "reviews",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        688,
+        32
+      ],
+      "id": "cbc8ceda-ed7c-434b-953d-4346d001c788",
+      "name": "Aggregate"
+    }
+  ],
+  "connections": {
+    "Webhook (GET)": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields1": {
+      "main": [
+        [
+          {
+            "node": "Zoom Reviews1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Zoom Reviews1": {
+      "main": [
+        [
+          {
+            "node": "Aggregate",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Respond to Webhook": {
+      "main": [
+        []
+      ]
+    },
+    "Aggregate": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "pinData": {},
+  "versionId": "af4a6dfa-e7b9-402a-9699-d8652750dd59",
+  "triggerCount": 1,
+  "tags": []
+}
