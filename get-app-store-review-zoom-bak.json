@@ -1,0 +1,105 @@
+{
+  "createdAt": "2025-08-21T09:03:39.738Z",
+  "updatedAt": "2025-08-21T09:04:54.000Z",
+  "id": "PJKdCK1Dcp38hseh",
+  "name": "get-app-store-review-zoom",
+  "active": false,
+  "isArchived": false,
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -592,
+        176
+      ],
+      "id": "43597781-4555-493c-a6cc-b1d168abfb12",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "={{ $json.google_sheet_url }}",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "={{ $json.google_sheet_url }}",
+          "mode": "url"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.6,
+      "position": [
+        -144,
+        176
+      ],
+      "id": "ed4e0d4c-c65d-4333-9260-c9a5181b5815",
+      "name": "Zoom Reviews",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "VXAlxkWiOANdzJaF",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "raw",
+        "jsonOutput": "{\n  \"google_sheet_url\": \"https://docs.google.com/spreadsheets/d/1tiBAVoFrT_R5TtPJJ-DXlT00PC8NQL7xP3ctQmD1Rj8/edit?gid=838036886#gid=838036886\"\n}\n",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -368,
+        176
+      ],
+      "id": "a5fe1978-3159-4055-8e00-73df3965c5b8",
+      "name": "Edit Fields"
+    }
+  ],
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Zoom Reviews": {
+      "main": [
+        []
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Zoom Reviews",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "pinData": {},
+  "versionId": "7267718d-dfc1-4beb-8452-927cb6ffaed8",
+  "triggerCount": 0,
+  "tags": []
+}
