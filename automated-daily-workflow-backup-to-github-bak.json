@@ -1,18 +1,16 @@
 {
-  "createdAt": "2025-08-02T13:09:55.338Z",
-  "updatedAt": "2025-08-21T09:34:08.000Z",
-  "id": "lXNvd66CTPrknSOd",
+  "createdAt": "2025-08-02T12:34:25.690Z",
+  "updatedAt": "2025-08-02T13:09:37.000Z",
+  "id": "4w44gKEY0OAFiUGG",
   "name": "Automated daily workflow backup to GitHub",
-  "active": true,
-  "isArchived": false,
+  "active": false,
+  "isArchived": true,
   "nodes": [
     {
       "parameters": {
         "rule": {
           "interval": [
-            {
-              "triggerAtHour": 2
-            }
+            {}
           ]
         }
       },
@@ -77,12 +75,12 @@
         },
         "repository": {
           "__rl": true,
-          "value": "n8n-backup",
+          "value": "n8n-workflow-backup",
           "mode": "list",
-          "cachedResultName": "n8n-backup",
-          "cachedResultUrl": "https://github.com/Camusama/n8n-backup"
+          "cachedResultName": "n8n-workflow-backup",
+          "cachedResultUrl": "https://github.com/Camusama/n8n-workflow-backup"
         },
-        "filePath": "=/"
+        "filePath": "=/homelab"
       },
       "id": "854f6e82-babb-474e-a138-2a6c398fd60e",
       "name": "List files from repo",
@@ -113,12 +111,12 @@
         },
         "repository": {
           "__rl": true,
-          "value": "n8n-backup",
+          "value": "n8n-workflow-backup",
           "mode": "list",
-          "cachedResultName": "n8n-backup",
-          "cachedResultUrl": "https://github.com/Camusama/n8n-backup"
+          "cachedResultName": "n8n-workflow-backup",
+          "cachedResultUrl": "https://github.com/Camusama/n8n-workflow-backup"
         },
-        "filePath": "={{ $('Retrieve workflows').item.json.name.replace(/\\s+/g, '-').toLowerCase() }}-{{ $('Retrieve workflows').item.json.tags[0]?.name || 'bak'}}.json",
+        "filePath": "={{ $('Retrieve workflows').item.json.name.replace(/\\s+/g, '-').toLowerCase() }}-{{ $('Retrieve workflows').item.json.tags[0].name }}.json",
         "fileContent": "={{ $('To base64').item.json.data }}",
         "commitMessage": "=backup-{{ $('Commit date & file name').item.json.commitDate }}"
       },
@@ -149,12 +147,12 @@
         },
         "repository": {
           "__rl": true,
-          "value": "n8n-backup",
+          "value": "n8n-workflow-backup",
           "mode": "list",
-          "cachedResultName": "n8n-backup",
-          "cachedResultUrl": "https://github.com/Camusama/n8n-backup"
+          "cachedResultName": "n8n-workflow-backup",
+          "cachedResultUrl": "https://github.com/Camusama/n8n-workflow-backup"
         },
-        "filePath": "={{ $('Retrieve workflows').item.json.name.replace(/\\s+/g, '-').toLowerCase() }}-{{ $('Retrieve workflows').item.json.tags[0]?.name||'bak' }}.json",
+        "filePath": "={{ $('Retrieve workflows').item.json.name.replace(/\\s+/g, '-').toLowerCase() }}-{{ $('Retrieve workflows').item.json.tags[0].name }}.json",
         "fileContent": "={{ $('To base64').item.json.data }}",
         "commitMessage": "=backup-{{ $node['Commit date & file name'].json.commitDate }}"
       },
@@ -181,7 +179,7 @@
             {
               "value1": "={{ $('Aggregate').item.json.name }}",
               "operation": "contains",
-              "value2": "={{ $('Retrieve workflows').item.json.name.replace(/\\s+/g, '-').toLowerCase() }}-{{ $('Retrieve workflows').item.json.tags[0]?.name||'bak' }}.json"
+              "value2": "={{ $('Retrieve workflows').item.json.name.replace(/\\s+/g, '-').toLowerCase() }}-{{ $('Retrieve workflows').item.json.tags[0].name }}.json"
             }
           ]
         }
@@ -402,16 +400,12 @@
     }
   },
   "settings": {},
-  "staticData": {
-    "node:Schedule Trigger": {
-      "recurrenceRules": []
-    }
-  },
+  "staticData": null,
   "meta": {
     "templateId": "4064"
   },
   "pinData": {},
-  "versionId": "f7b67455-bcf2-4180-a340-02b96ea9fde0",
-  "triggerCount": 1,
+  "versionId": "52c0377d-3f89-4058-bee9-8f6f97476108",
+  "triggerCount": 0,
   "tags": []
 }
