@@ -1,6 +1,6 @@
 {
   "createdAt": "2025-07-30T09:41:09.561Z",
-  "updatedAt": "2025-07-31T08:29:58.000Z",
+  "updatedAt": "2025-11-05T08:44:32.000Z",
   "id": "hDSfvHTw6rvdzx4M",
   "name": "reddit-n8n-lark-optimize",
   "active": false,
@@ -107,8 +107,8 @@
       "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
       "typeVersion": 1.2,
       "position": [
-        1568,
-        672
+        1648,
+        608
       ],
       "id": "a967e161-6c8a-464f-b522-4a29f5c0f384",
       "name": "Structured Output Parser"
@@ -374,8 +374,8 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
       "typeVersion": 1.2,
       "position": [
-        1440,
-        672
+        1344,
+        640
       ],
       "id": "671b17d3-aa22-4bc2-a52a-637f95a741ee",
       "name": "OpenAI Chat Model",
@@ -601,7 +601,7 @@
     "templateCredsSetupCompleted": true
   },
   "pinData": {},
-  "versionId": "3f520711-6b24-4069-a883-501e7e3d56b4",
+  "versionId": "bc551a03-40e4-482f-939c-af52dcf1b5fe",
   "triggerCount": 0,
   "shared": [
     {
